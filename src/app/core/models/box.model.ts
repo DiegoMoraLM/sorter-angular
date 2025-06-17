@@ -12,4 +12,8 @@ export interface Box {
   client?: string;
   category: string;
   hasTask?: boolean;
+  position: {
+  column: number;
+  height: number;
+};
 }

@@ -1,4 +1,17 @@
 <section class="home">
-  <h1>Bienvenido a Sorter Angular</h1>
-  <p>Esta es la página de inicio. Pronto verás la funcionalidad migrada desde Next.js aquí.</p>
+  <h1>R-Sorter</h1>
+  <p>Esta es la página de inicio.</p>
 </section>
+
+<app-quick-actions
+  (addBox)="addMockBox()"
+  (resetWarehouse)="resetWarehouse()">
+</app-quick-actions>
+
+<app-warehouse
+  [columns]="4"
+  [heights]="5"
+  [boxes]="mockBoxes">
+</app-warehouse>
+
+<app-task-list [tasks]="mockTasks"></app-task-list>

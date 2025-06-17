@@ -1,0 +1,17 @@
+<div class="task-list">
+  <h2>Tareas</h2>
+  <ul *ngIf="tasks.length; else noTasks">
+    <li *ngFor="let task of tasks">
+      <strong>{{ task.type | titlecase }}</strong>
+      <span class="status">({{ task.status | titlecase }})</span> –
+      <em *ngIf="task.boxId">Caja: {{ task.boxId }}</em>
+      <div class="meta">
+        {{ task.assignedTo }} · {{ task.createdAt | date:'short' }}
+      </div>
+    </li>
+  </ul>
+
+  <ng-template #noTasks>
+    <p>No hay tareas registradas.</p>
+  </ng-template>
+</div>

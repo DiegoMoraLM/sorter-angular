@@ -1,0 +1,18 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <header>
+      <h2>Detalles de Caja</h2>
+      <button (click)="onClose()">✖</button>
+    </header>
+    <section>
+      <p><strong>Referencia:</strong> {{ box.reference }}</p>
+      <p><strong>OT:</strong> {{ box.ot }}</p>
+      <p><strong>Posición:</strong> Columna {{ box.position.column }}, Altura {{ box.position.height }}</p>
+      <p><strong>Prioridad:</strong> {{ box.priority }}</p>
+      <p><strong>Estado:</strong> {{ box.status }}</p>
+      <p><strong>Operador:</strong> {{ box.operator }}</p>
+      <p><strong>Categoría:</strong> {{ box.category }}</p>
+      <p><strong>Fecha de entrada:</strong> {{ box.entryDate | date:'short' }}</p>
+    </section>
+  </div>
+</div>
