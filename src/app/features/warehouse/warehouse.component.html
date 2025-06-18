@@ -1,8 +1,50 @@
-<div class="warehouse">
-  <div class="column" *ngFor="let col of [].constructor(columns); let c = index">
+<div class="warehouse-header">
+  <div class="header-title">
+    <span class="icon">📦</span>
+    <div>
+      <h2>Vista del Almacén</h2>
+      <p>{{ columnRangeLabel }}</p>
+    </div>
+  </div>
+
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 0">⬅️</button>
+    <span>{{ currentPage + 1 }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">➡️</button>
+  </div>
+</div>
+
+<div class="warehouse-grid">
+  <div class="row-labels">
+    <div *ngFor="let row of [].constructor(heights); let r = index" class="row-label">
+      {{ r + 1 }}
+    </div>
+  </div>
+
+  <div class="column" *ngFor="let c of visibleColumns">
+    <div class="col-header">
+      <span class="icon">📊</span>
+      Col {{ c + 1 }}
+    </div>
+
     <div class="cell" *ngFor="let row of [].constructor(heights); let h = index">
-      <div class="box" *ngIf="getBoxAt(c, h) as box" (click)="selectBox(box)">
-        📦 {{ box.reference }}
+      <div class="slot-row">
+        <ng-container *ngFor="let i of [].constructor(5); let idx = index">
+          <ng-container *ngIf="getBoxesAtRow(c, h)[idx] as box; else emptySlot">
+            <div
+              class="box"
+              [ngClass]="box.priority"
+              (click)="selectBox(box)">
+              {{ box.reference }}
+            </div>
+          </ng-container>
+          <ng-template #emptySlot>
+            <div class="slot-empty"></div>
+          </ng-template>
+        </ng-container>
+      </div>
+      <div class="cell-footer">
+        {{ getBoxesAtRow(c, h).length }}/5
       </div>
     </div>
   </div>

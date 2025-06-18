@@ -1,17 +1,29 @@
 <section class="home">
   <h1>R-Sorter</h1>
-  <p>Esta es la página de inicio.</p>
 </section>
 
-<app-quick-actions
-  (addBox)="addMockBox()"
-  (resetWarehouse)="resetWarehouse()">
-</app-quick-actions>
+<ng-container *ngIf="boxes$ | async as boxes">
+  <ng-container *ngIf="tasks$ | async as tasks">
+    
+    <app-dashboard
+      [boxes]="boxes"
+      [tasks]="tasks">
+    </app-dashboard>
 
-<app-warehouse
-  [columns]="4"
-  [heights]="5"
-  [boxes]="mockBoxes">
-</app-warehouse>
+    <app-quick-actions
+      (addBox)="addMockBox()"
+      (resetWarehouse)="resetWarehouse()">
+    </app-quick-actions>
 
-<app-task-list [tasks]="mockTasks"></app-task-list>
+    <app-warehouse
+      [columns]="20"
+      [heights]="5"
+      [boxes]="boxes">
+    </app-warehouse>
+
+    <app-task-list
+      [tasks]="tasks">
+    </app-task-list>
+
+  </ng-container>
+</ng-container>

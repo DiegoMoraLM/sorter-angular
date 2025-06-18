@@ -1,0 +1,25 @@
+<div class="dashboard">
+  <h2>Resumen</h2>
+
+  <div class="card">
+    <h3>Total de cajas: {{ totalBoxes }}</h3>
+  </div>
+
+  <div class="card">
+    <h4>Cajas por prioridad</h4>
+    <ul>
+      <li *ngFor="let level of ['high', 'medium', 'low']">
+        {{ level | titlecase }}: {{ boxesByPriority[level] || 0 }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>Tareas por estado</h4>
+    <ul>
+      <li *ngFor="let status of ['pending', 'in_progress', 'completed']">
+        {{ status | titlecase }}: {{ tasksByStatus[status] || 0 }}
+      </li>
+    </ul>
+  </div>
+</div>
